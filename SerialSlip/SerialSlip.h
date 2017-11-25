@@ -4,18 +4,22 @@
 //                                        Copyright(C) 2017 by Ryuji Fuchikami 
 // ----------------------------------------------------------------------------
 
+#ifndef __RYUZ__SERIALSLIP_H__
+#define __RYUZ__SERIALSLIP_H__
 
 
-#define SERIAL_SLIP_EOF   EOF   // ƒf[ƒ^‚È‚µ
+#define SERIAL_SLIP_EOF   EOF   // ãƒ‡ãƒ¼ã‚¿ãªã—
 #define SERIAL_SLIP_ESC   -2    // ESC
 
-void SerialSlip_Start(int bps); // ‰Šú‰»
-void SerialSlip_End(void);      // I—¹
-int  SerialSlip_GetChar(void);  // 1•¶šóM
-void SerialSlip_PutChar(int c); // 1•¶š‘—M
-int  SerialSlip_RecvPacket(byte data[], int maxlen);  // ƒpƒPƒbƒgóM
-void SerialSlip_SendPacket(byte data[], int len);     // ƒpƒPƒbƒg‘—M
+void SerialSlip_Start(long bps); // åˆæœŸåŒ–
+void SerialSlip_End(void);      // çµ‚äº†
+int  SerialSlip_GetChar(void);  // 1æ–‡å­—å—ä¿¡
+void SerialSlip_PutChar(int c); // 1æ–‡å­—é€ä¿¡
+int  SerialSlip_RecvPacket(unsigned char data[], int maxlen);  // ãƒ‘ã‚±ãƒƒãƒˆå—ä¿¡
+void SerialSlip_SendPacket(const unsigned char data[], int len);     // ãƒ‘ã‚±ãƒƒãƒˆé€ä¿¡
 
 
+#endif // __RYUZ__SERIALSLIP_H__
 
 // end of file
+

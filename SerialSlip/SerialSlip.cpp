@@ -4,16 +4,15 @@
 //                                        Copyright(C) 2017 by Ryuji Fuchikami 
 // ----------------------------------------------------------------------------
 
-
+#include <Arduino.h>
 #include "SerialSlip.h"
 
 
-
-boolean SerialSlip_blRecvEsc;		// ESCóM’†ƒtƒ‰ƒO
+boolean SerialSlip_blRecvEsc;    // ESCå—ä¿¡ä¸­ãƒ•ãƒ©ã‚°
 int     SerialSlip_iRecvPacketLen;
 
-// ‰Šú‰»
-void SerialSlip_Start(int bps)
+// åˆæœŸåŒ–
+void SerialSlip_Start(long bps)
 {
   // inisialize
   SerialSlip_blRecvEsc = false;
@@ -23,14 +22,14 @@ void SerialSlip_Start(int bps)
   Serial.write(0xc0);
 }
 
-// I—¹
+// çµ‚äº†
 void SerialSlip_End(void)
 {
   Serial.end();
 }
 
 
-// 1•¶šóM
+// 1æ–‡å­—å—ä¿¡
 int SerialSlip_GetChar(void)
 {
   int c;
@@ -63,7 +62,7 @@ int SerialSlip_GetChar(void)
   return c;
 }
 
-// 1•¶š‘—M
+// 1æ–‡å­—é€ä¿¡
 void SerialSlip_PutChar(int c)
 {
     if ( c == SERIAL_SLIP_ESC ) {
@@ -82,8 +81,8 @@ void SerialSlip_PutChar(int c)
     }
 }
 
-// ƒpƒPƒbƒgóM
-int SerialSlip_RecvPacket(byte data[], int maxlen)
+// ãƒ‘ã‚±ãƒƒãƒˆå—ä¿¡
+int SerialSlip_RecvPacket(unsigned char data[], int maxlen)
 {
   int c;
   c = SerialSlip_GetChar();
@@ -104,8 +103,8 @@ int SerialSlip_RecvPacket(byte data[], int maxlen)
   return -1;  
 }
 
-// ƒpƒPƒbƒg‘—M
-void SerialSlip_SendPacket(byte data[], int len)
+// ãƒ‘ã‚±ãƒƒãƒˆé€ä¿¡
+void SerialSlip_SendPacket(const unsigned char data[], int len)
 {
   int i;
   for ( i = 0; i < len; i++ ) {
@@ -115,3 +114,4 @@ void SerialSlip_SendPacket(byte data[], int len)
 }
 
 // end of file
+
